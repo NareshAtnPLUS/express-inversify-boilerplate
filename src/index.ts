@@ -21,12 +21,8 @@ const app = server.build();
 
 app.listen(serverConfig.PORT || 3000, () => {
     console.log(`Server started on port ${serverConfig.PORT}`);
+    //@ts-ignore
     listEndpoints(app)
         .filter((it) => it.path !== '*')
         .map((it) => console.log(`${it.methods}: ${it.path}`));
 });
-
-    
-
-    
-

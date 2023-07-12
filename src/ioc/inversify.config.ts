@@ -4,9 +4,15 @@ import {
     InversifyExpressServer,
     TYPE,
 } from 'inversify-express-utils';
-import { UserController } from 'src/controllers/users.controller';
-import { UserService } from 'src/services/users.service';
+
 import {} from 'inversify-express-utils';
+import { UserService } from '../services/users.service';
+import { UserController } from '../controllers/users.controller';
+import {
+    ResponseHandlerUtils,
+    ResponseHandlerUtilsIdentifier,
+    ResponseHandlerUtilsType,
+} from '../utils/response-handler.utils';
 
 const container = new Container();
 
@@ -16,4 +22,7 @@ container.bind<UserService>(UserService).toSelf().inSingletonScope();
 // Register the UserController class as a controller
 container.bind(UserController).to(UserController).inSingletonScope();
 
+container
+    .bind<ResponseHandlerUtilsType>(ResponseHandlerUtilsIdentifier)
+    .toConstantValue(ResponseHandlerUtils);
 export default container;

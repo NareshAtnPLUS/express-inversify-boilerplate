@@ -1,6 +1,7 @@
 import { injectable } from 'inversify';
-import logger from 'src/logger';
-
+import logger from '../logger';
+import { PropertyManager } from '../types/user.type';
+import crypto from 'crypto';
 @injectable()
 export class UserService {
     private users: any[] = [
@@ -11,5 +12,9 @@ export class UserService {
     async getUsers() {
         logger.info(this.users);
         return this.users;
+    }
+    async register(user: PropertyManager[]) {
+                
+        return null;
     }
 }
